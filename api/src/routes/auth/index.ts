@@ -3,10 +3,10 @@ import {
   createUserSchema,
   loginSchema,
   usersTable,
-} from "../../db/usersSchema";
-import { validateData } from "../../middlewares/validationMiddleware";
+} from "../../db/usersSchema.js";
+import { validateData } from "../../middlewares/validationMiddleware.js";
 import bcrypt from "bcryptjs";
-import { db } from "../../db/index";
+import { db } from "../../db/index.js";
 import { eq } from "drizzle-orm";
 import jwt from "jsonwebtoken";
 
@@ -18,7 +18,6 @@ router.post("/register", validateData(createUserSchema), async (req, res) => {
     data.password = await bcrypt.hash(data.password, 10);
 
     const [user] = await db.insert(usersTable).values(data).returning();
-    console.log(user);
 
     //@ts-ignore
     delete user.password;
@@ -62,7 +61,6 @@ router.post("/login", validateData(loginSchema), async (req, res) => {
     //@ts-ignore
     delete user.password;
     res.status(200).json({token,user})
-    console.log(email, password);
   } catch (e) {
     res.status(500).send("Something went wrong");
   }
