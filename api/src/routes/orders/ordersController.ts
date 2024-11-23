@@ -14,6 +14,7 @@ export async function createOrder(req: Request, res: Response) {
 
     const [newOrder] = await db
       .insert(ordersTable)
+      //TODO: remove ignore and fix error
       //@ts-ignore
       .values({ userId: userId })
       .returning();
