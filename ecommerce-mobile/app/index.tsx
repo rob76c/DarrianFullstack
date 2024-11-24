@@ -10,8 +10,8 @@ export default function HomeScreen() {
       numColumns={2}
       //Add spacing between rows
       contentContainerClassName="gap-2"
-      //Add spacing between items
-      columnWrapperClassName="gap-2"
+      //Add spacing between columns
+      columnWrapperClassName="gap-1"
       renderItem={({ item }) => <ProductListItem product={item} />}
     />
   );
